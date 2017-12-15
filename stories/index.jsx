@@ -2341,8 +2341,7 @@ storiesOf("Slider", module)
             autoplay={boolean("Autoplay", false)}
             autoplaySpeed={number("Autoplay speed", 5000)}
             pauseOnHover={boolean("Pause on hover", true)}
-            nextArrow={<div style={[styles.arrow.default, styles.arrow.next]}>&gt;</div>}
-            prevArrow={<div style={styles.arrow.default}>&lt;</div>}
+            arrows={boolean("Arrows", true)}
           >
             <div key="1" style={styles.slide}>Slide 1</div>
             <div key="2" style={styles.slide}>Slide 2</div>
@@ -3268,6 +3267,7 @@ storiesOf("Video card shelf", module)
           heading="Food and drink"
           href="/"
           theme={select("Theme", ["light", "dark"], "light")}
+          spacing={select("Spacing", ["normal", "compact"], "normal")}
           sliderCoverupColor={select("Slider coverup color", ["transparent", "white", "#1f1f1f"], "transparent")}
         >
           <CardVideo
@@ -3279,6 +3279,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
 
           <CardVideo
@@ -3290,6 +3291,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
 
           <CardVideo
@@ -3301,6 +3303,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
 
           <CardVideo
@@ -3312,6 +3315,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
 
           <CardVideo
@@ -3323,6 +3327,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
 
           <CardVideo
@@ -3334,6 +3339,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
+            spacing={select("Spacing", ["normal", "compact"], "normal")}
           />
         </CardShelfVideoSlider>
       </div>

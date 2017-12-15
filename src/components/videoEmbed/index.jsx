@@ -334,7 +334,7 @@ class VideoEmbed extends Component {
     // so we make sure to disable the "ad overlay" when any of these events fire.
     this.disableAdOverlay();
 
-    if (!this.props.hideNextVideoOnCueChange || !this.cueEndTime) {
+    if (!this.props.hideNextVideoOnCuePoint || !this.cueEndTime) {
       this.setState({ nextVideoVisible: true });
     }
 
@@ -467,7 +467,7 @@ class VideoEmbed extends Component {
 
     this.cueEndTime = this.player.currentTime() + cueDuration;
 
-    if (this.props.hideNextVideoOnCueChange) {
+    if (this.props.hideNextVideoOnCuePoint) {
       this.setState({ nextVideoVisible: false });
     }
 
@@ -874,7 +874,7 @@ VideoEmbed.propTypes = {
     image: PropTypes.string,
     href: PropTypes.string,
   }),
-  hideNextVideoOnCueChange: PropTypes.bool,
+  hideNextVideoOnCuePoint: PropTypes.bool,
   autoplay: PropTypes.bool,
   cover: PropTypes.bool,
   controls: PropTypes.bool,
@@ -906,7 +906,7 @@ VideoEmbed.defaultProps = {
   controls: true,
   visible: true,
   visibleWhileNotPlaying: true,
-  hideNextVideoOnCueChange: true,
+  hideNextVideoOnCuePoint: true,
   previewStartTime: null,
   previewEndTime: null,
 };
