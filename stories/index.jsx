@@ -646,7 +646,7 @@ storiesOf("Cards", module)
           heading={text("Heading", "High Sierra routes with Ken Walker Smith")}
           bullets={array("Bullets", ["On The Road", "E.01"])}
           runtime={number("Video runtime", 129365)}
-          onClick={action("Watch this video later")}
+          mobile={boolean("Mobile", false)}
           imageSrc={text("Image source", "//media.gadventures.com/media-server/cache/a6/2c/a62ca9f86982dd950319138334e7248b.jpg")}
           href={text("URL", "#")}
           layout={select("Layout", ["card", "tile"], "card")}
@@ -2831,6 +2831,7 @@ storiesOf("Thumbnail list item", module)
         subtitle={array("Subtitle", ["Item 3", "Item 4"])}
         runtime={number("Video runtime", 129365)}
         imagePath={text("Image path", "https://lonelyplanetstatic.imgix.net/copilot%2Fimages%2FYXJ0YW5kY3VsdHVyZS5qcGdTYXQgRGVjIDE3IDIwMTYgMjE6MDA6MDUgR01UKzAwMDAgKFVUQyk%3D.jpg?q=60&sharp=10&fit=crop&w=180")}
+        status={text("Status", "Status")}
         description={array("Description", ["Item 1", "Item 2"])}
         descriptionIcon={text("Description icon", "Clock")}
         descriptionIconLabel={text("Description icon label", "Watch later")}
@@ -2846,7 +2847,7 @@ storiesOf("Tiles", module)
   .addDecorator(withKnobs)
   .add("Video tile", () => (
     <StyleRoot>
-      <div style={{ padding: "32px" }}>
+      <div style={{ padding: "32px", width: "400px" }}>
         <TileVideo
           heading={text("Heading", "High Sierra routes with Ken Walker Smith")}
           bullets={array("Bullets", ["On The Road", "E.01"])}
@@ -3170,6 +3171,7 @@ storiesOf("Video card shelf", module)
             imageSrc={text("Image source", "//media.gadventures.com/media-server/cache/a6/2c/a62ca9f86982dd950319138334e7248b.jpg")}
             href={text("URL", "#")}
             layout={select("Layout", ["card", "tile"], "card")}
+            style={{width: "400px"}}
           />
 
           <CardVideo
@@ -3180,6 +3182,7 @@ storiesOf("Video card shelf", module)
             imageSrc={text("Image source", "https://lonelyplanetwp.imgix.net/2016/10/GettyImages-509196834_high-ba0228a2190f.jpg?fit=min&q=40&sharp=10&vib=20&w=1470")}
             href={text("URL", "#")}
             layout={select("Layout", ["card", "tile"], "card")}
+            style={{width: "400px"}}
           />
 
           <CardVideo
@@ -3190,6 +3193,7 @@ storiesOf("Video card shelf", module)
             imageSrc={text("Image source", "https://lonelyplanetwp.imgix.net/2016/09/LPT0414_063-2225e4dcf106.jpg?fit=min&q=40&sharp=10&vib=20&w=1470")}
             href={text("URL", "#")}
             layout={select("Layout", ["card", "tile"], "card")}
+            style={{width: "400px"}}
           />
         </CardShelfVideo>
       </div>
@@ -3267,7 +3271,7 @@ storiesOf("Video card shelf", module)
           heading="Food and drink"
           href="/"
           theme={select("Theme", ["light", "dark"], "light")}
-          spacing={select("Spacing", ["normal", "compact"], "normal")}
+          spacing={select("Spacing", ["normal", "compact"], "compact")}
           sliderCoverupColor={select("Slider coverup color", ["transparent", "white", "#1f1f1f"], "transparent")}
         >
           <CardVideo
@@ -3279,7 +3283,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
 
           <CardVideo
@@ -3291,7 +3295,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
 
           <CardVideo
@@ -3303,7 +3307,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
 
           <CardVideo
@@ -3315,7 +3319,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
 
           <CardVideo
@@ -3327,7 +3331,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
 
           <CardVideo
@@ -3339,7 +3343,7 @@ storiesOf("Video card shelf", module)
             href={text("URL", "#")}
             layout="tile"
             theme={select("Theme", ["light", "dark"], "light")}
-            spacing={select("Spacing", ["normal", "compact"], "normal")}
+            spacing={select("Spacing", ["normal", "compact"], "compact")}
           />
         </CardShelfVideoSlider>
       </div>

@@ -10,6 +10,10 @@ import {
   CardImage,
   CardText,
 } from "../card";
+import {
+  fontSizeBodySmall,
+  lineHeightBodySmall,
+} from "../../styles/typography";
 import IconButton from "../iconButton";
 import mq from "../../styles/mq";
 import colors from "../../styles/colors";
@@ -87,7 +91,8 @@ const styles = {
 
   duration: {
     default: {
-      fontSize: "14px",
+      fontSize: fontSizeBodySmall,
+      lineHeight: lineHeightBodySmall,
       color: colors.textOverlay,
       position: "absolute",
       right: "16px",
