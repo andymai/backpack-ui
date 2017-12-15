@@ -2,19 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import radium, { Style } from "radium";
 import cn from "classnames";
-
 import colors from "../../styles/colors";
 import mq from "../../styles/mq";
 import { rgba } from "../../utils/color";
 import propTypes from "../../utils/propTypes";
 
 const hoverStyles = {
-  ".Heading": {
-    color: `${colors.linkPrimary} !important`,
+  default: {
+    ".CoverPhoto": {
+      transform: "scale(1.03) !important",
+    },
   },
 
-  ".CoverPhoto": {
-    transform: "scale(1.03) !important",
+  light: {
+    ".Heading": {
+      color: `${colors.linkPrimary} !important`,
+    },
   },
 };
 
@@ -38,11 +41,12 @@ const styles = {
 const Card = ({
   children,
   layout,
+  theme,
   className,
   style,
 }) => (
   <div
-    className={cn("Card", className)}
+    className={`${cn("Card", className)} Card--${theme}`}
     style={[
       styles.container,
       layout !== "tile" && styles.card,
@@ -51,7 +55,12 @@ const Card = ({
   >
     <Style
       scopeSelector=".Card:hover"
-      rules={hoverStyles}
+      rules={hoverStyles.default}
+    />
+
+    <Style
+      scopeSelector=".Card--light:hover"
+      rules={hoverStyles.light}
     />
 
     {children}
@@ -61,12 +70,14 @@ const Card = ({
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   layout: PropTypes.oneOf(["tile", "card"]),
+  theme: PropTypes.oneOf(["light", "dark"]),
   className: PropTypes.string,
   style: propTypes.style,
 };
 
 Card.defaultProps = {
   layout: "card",
+  theme: "light",
 };
 
 export default radium(Card);

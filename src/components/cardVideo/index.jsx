@@ -135,6 +135,7 @@ const CardVideo = ({
   <Card
     className={cn("Card--video", className)}
     layout={layout}
+    theme={theme}
     style={[
       styles.container,
       style,
