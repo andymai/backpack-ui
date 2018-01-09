@@ -49,6 +49,8 @@ class VideoPlaylistWithSlider extends React.Component {
   constructor(props) {
     super(props);
 
+    this.newPlaylist = true;
+
     this.state = {
       /*
         Initial video is not set as "active" so that the VideoInfo component
@@ -57,15 +59,32 @@ class VideoPlaylistWithSlider extends React.Component {
       activeVideo: null,
     };
 
-    this.onPlaylistLoadVideo = this.onPlaylistLoadVideo.bind(this);
+    this.onLoadVideo = this.onLoadVideo.bind(this);
   }
 
-  onPlaylistLoadVideo(video) {
-    this.setState({ activeVideo: video });
+  componentWillReceiveProps(nextProps) {
+    const videoIds = (this.props.videos || []).map(v => v.id).sort();
+    const nextVideoIds = (nextProps.videos || []).map(v => v.id).sort();
+    if (
+      (videoIds.length !== nextVideoIds.length) ||
+      (videoIds.filter((v, i) => v.id !== nextVideoIds[i].id).length !== 0)
+    ) {
+      // Assume a new playlist has been loaded and state should reset
+      this.setState({ activeVideo: null });
+      this.newPlaylist = true;
+    }
+  }
+
+  onLoadVideo(video) {
+    if (!this.newPlaylist) {
+      this.setState({ activeVideo: video });
+    }
+    this.newPlaylist = false;
   }
 
   render() {
     const {
+      video,
       videos,
       visibleVideosDesktop,
       visibleVideosMobile,
@@ -88,18 +107,19 @@ class VideoPlaylistWithSlider extends React.Component {
               <VideoPlaylist
                 heading={heading}
                 mobile={mobile}
+                video={video}
                 videos={videos}
                 visibleVideos={visibleVideosDesktop}
                 autoplay={autoplay}
-                onLoadVideo={this.onPlaylistLoadVideo}
+                onLoadVideo={this.onLoadVideo}
                 videoEmbed={videoEmbed}
               />
             </Container>
-            {showVideoInfo &&
+            {showVideoInfo && activeVideo &&
               <Container>
                 <VideoInfo
-                  visible={activeVideo}
                   video={activeVideo}
+                  fadeIn
                 />
               </Container>
             }
@@ -110,18 +130,18 @@ class VideoPlaylistWithSlider extends React.Component {
                   mobile={mobile}
                   spacing="compact"
                 >
-                  {videos.slice(0, visibleVideosDesktop).map((video) => (
+                  {videos.slice(0, visibleVideosDesktop).map((v) => (
                     <CardVideo
-                      key={video.id}
-                      heading={video.name}
-                      runtime={video.duration}
-                      imageSrc={video.cardImage}
-                      href={video.url}
+                      key={v.id}
+                      heading={v.name}
+                      runtime={v.duration}
+                      imageSrc={v.cardImage}
+                      href={v.url}
                       layout="tile"
                       spacing="compact"
                       mobile={mobile}
-                      actionIcon={video.cardActionIcon}
-                      onClick={video.cardOnClick}
+                      actionIcon={v.cardActionIcon}
+                      onClick={v.cardOnClick}
                     />
                   ))}
                 </CardShelfVideoSlider>
@@ -130,13 +150,13 @@ class VideoPlaylistWithSlider extends React.Component {
             <div style={styles.listContainer}>
               <Container>
                 <ThumbnailList heading={sliderHeading || heading}>
-                  {videos.slice(0, visibleVideosMobile).map((video) => (
+                  {videos.slice(0, visibleVideosMobile).map((v) => (
                     <ThumbnailListItem
-                      key={video.id}
-                      title={video.name}
-                      href={video.url}
-                      imagePath={video.thumbnailImage}
-                      subtitle={[duration(video.duration)]}
+                      key={v.id}
+                      title={v.name}
+                      href={v.url}
+                      imagePath={v.thumbnailImage}
+                      subtitle={[duration(v.duration)]}
                       lineClamp={false}
                     />
                   ))}
@@ -174,6 +194,7 @@ const videoShape = {
 };
 
 VideoPlaylistWithSlider.propTypes = {
+  video: PropTypes.shape(videoShape),
   videos: PropTypes.arrayOf(PropTypes.shape(videoShape)).isRequired,
   heading: PropTypes.string.isRequired,
   sliderHeading: PropTypes.string,

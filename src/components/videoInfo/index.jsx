@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import radium, { Style } from "radium";
+import { defer } from "lodash";
 import Heading from "../heading";
 import Link from "../link";
 import SocialIconButton from "../socialIconButton";
@@ -28,12 +29,10 @@ const styles = {
   container: {
     default: {
       opacity: 0,
-      height: "0px",
       transition: `opacity ${timing.default} linear`,
     },
     visible: {
       opacity: 1,
-      height: "auto",
     },
   },
 
@@ -238,10 +237,18 @@ class VideoInfo extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      visible: !props.fadeIn,
+    };
+
     this.onClickFacebook = this.onClickFacebook.bind(this);
     this.onClickFacebookMessenger = this.onClickFacebookMessenger.bind(this);
     this.onClickTwitter = this.onClickTwitter.bind(this);
     this.onClickWhatsApp = this.onClickWhatsApp.bind(this);
+  }
+
+  componentDidMount() {
+    defer(() => this.setState({ visible: true }));
   }
 
   onClickFacebook() {
@@ -282,7 +289,8 @@ class VideoInfo extends React.Component {
   }
 
   render() {
-    const { video, theme, mobile, headingLevel, visible } = this.props;
+    const { video, theme, mobile, headingLevel } = this.props;
+    const { visible } = this.state;
 
     return (
       <div
@@ -313,7 +321,6 @@ class VideoInfo extends React.Component {
                 styles.section[theme],
               ]}
             >
-
 
               <article style={styles.article}>
                 <div>
@@ -485,13 +492,12 @@ VideoInfo.propTypes = {
   theme: PropTypes.oneOf(["light", "dark"]).isRequired,
   mobile: PropTypes.bool,
   headingLevel: PropTypes.number,
-  visible: PropTypes.bool,
+  fadeIn: PropTypes.bool,
 };
 
 VideoInfo.defaultProps = {
   theme: "light",
   headingLevel: 2,
-  visible: true,
 };
 
 export default radium(VideoInfo);

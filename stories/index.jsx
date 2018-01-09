@@ -3403,7 +3403,7 @@ storiesOf("Video info", module)
   .add("Light", () => (
     <StyleRoot>
       <VideoInfo
-        visible={boolean("Visible", true)}
+        fadeIn={boolean("Fade in", true)}
         theme="light"
         mobile={boolean("Mobile", false)}
         headingLevel={number("Heading level", 2)}
@@ -3432,7 +3432,7 @@ storiesOf("Video info", module)
     <StyleRoot>
       <div style={{ backgroundColor: "#1f1f1f" }}>
         <VideoInfo
-          visible={boolean("Visible", true)}
+          fadeIn={boolean("Fade in", true)}
           theme="dark"
           mobile={boolean("Mobile", false)}
           headingLevel={number("Heading level", 2)}
